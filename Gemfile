@@ -1,3 +1,4 @@
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -69,3 +70,10 @@ gem 'devise'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
 end
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.5'
+end
+
+
+gem "factory_bot_rails"
