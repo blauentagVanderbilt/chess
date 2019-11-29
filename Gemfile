@@ -77,3 +77,8 @@ end
 
 
 gem "factory_bot_rails"
+
+
+gem 'simplecov', require: false, group: :test
+
+
