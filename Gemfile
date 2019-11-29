@@ -78,7 +78,8 @@ end
 
 gem "factory_bot_rails"
 
+group :test do
+  gem 'simplecov', require: false
 
-gem 'simplecov', require: false, group: :test
-
-
+  gem 'simplecov-console'
+end
