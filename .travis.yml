@@ -2,8 +2,13 @@ language: ruby
 rvm:
  - 2.5.3
 
+services:
+  - postgresql
 
+before_script:
+   - psql -c 'create database chess_test;' -U postgres
 
- script:
+script:
   - bin/rake db:migrate RAILS_ENV=test
   - bin/rake
+  - bundle exec rspec
