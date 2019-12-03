@@ -78,4 +78,12 @@ end
 
 gem "factory_bot_rails"
 
+
 gem 'rubocop', '~> 0.76.0', require: false
+
+group :test do
+  gem 'simplecov', require: false
+
+  gem 'simplecov-console', require: false
+end
+
