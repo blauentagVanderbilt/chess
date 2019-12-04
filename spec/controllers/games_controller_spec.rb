@@ -14,7 +14,7 @@ RSpec.describe GamesController, type: :controller do
       expect(response).to redirect_to new_user_session_path
     end
     it "should successfully show the new form" do
-      user= Factorybot.create(:user)
+      user= FactoryBot.create(:user)
       sign_in user
       get :new
       expect(response).to have_http_status(:success)
