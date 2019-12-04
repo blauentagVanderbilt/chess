@@ -1,0 +1,53 @@
+body {
+  background: #222;
+}
+
+.chess-board {
+  background: #DDD;
+  border: 1px solid #000;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.chess-board td {
+  background: #FFF;
+  padding: 0;
+  width: 4rem;
+  height: 4rem;
+}
+
+.chess-board thead th {
+
+  padding: 0;
+  width: 4rem;
+  height: 2rem;
+  line-height: 2rem;
+}
+
+.chess-board thead th.blank {
+  width: 2rem;
+}
+
+.chess-board tbody th {
+  background: #DDD;
+  padding: 0;
+  width: 2rem;
+  height: 4rem;
+}
+
+.chess-board tr:nth-child(odd) td:nth-of-type(even),
+.chess-board tr:nth-child(even) td:nth-of-type(odd){
+  background: #222;
+}
+
+$column-names: (A B C D E F G H);
+
+@for $i from 1 through 8 {
+  .chess-board thead th:nth-child(#{$i + 1}):after {
+    content: quote(nth($column-names, $i));
+  }
+  
+  .chess-board tbody tr:nth-child(#{$i}) th:after {
+    content: '#{9 - $i}';
+  }
+}
