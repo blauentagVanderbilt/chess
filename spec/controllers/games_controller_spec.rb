@@ -23,21 +23,26 @@ RSpec.describe GamesController, type: :controller do
 
   describe "games#create action" do
     it "should require a logged in user" do
-      post :create, game: { name: "fail!"}
+      post :create, params: {
+        game: {
+          name: 'Test'
+        }
+      }
       expect(response).to redirect_to new_user_session_path
     end
 
     it "should successfully create a new game in our database" do
-      user = Factorybot.create(:user)
+      user = FactoryBot.create(:user)
       sign_in user
-      post :create, game: {
-        name: 'Death Match'
+      post :create, params: {
+        game: {
+          name: 'Death Match'
+        }
       }
       expect(response).to redirect_to root_path
       game = Game.last
       expect(game.name).to eq("Death Match")
-      expect(game.user).to eq(user)
+      expect(game.white_player_id).to eq(user.id)
     end
   end
-
 end
