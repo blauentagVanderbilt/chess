@@ -24,7 +24,9 @@ class GamesController < ApplicationController
   private
 
   def game_params
+
     params.require(:game).permit(:name).merge(white_player_id: current_user.id)
+
   end
 
 end

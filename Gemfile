@@ -1,4 +1,3 @@
-
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -72,18 +71,13 @@ source 'https://rails-assets.org' do
 end
 
 group :development, :test do
+  gem 'rubocop', '~> 0.76.0', require: false
   gem 'rspec-rails', '~> 3.5'
+  gem "factory_bot_rails"
 end
-
-
-gem "factory_bot_rails"
-
-
-gem 'rubocop', '~> 0.76.0', require: false
 
 group :test do
   gem 'simplecov', require: false
 
   gem 'simplecov-console', require: false
 end
-
