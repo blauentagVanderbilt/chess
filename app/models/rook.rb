@@ -1,4 +1,3 @@
-class Rook < ChessPiece
-  belongs_to :game
-  belongs_to :users
+class Rook < Piece
+ 
 end
