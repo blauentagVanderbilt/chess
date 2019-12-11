@@ -5,5 +5,9 @@ class Rook < Piece
     y_distance = y_distance(new_y_position)
 
     (x_distance >= 1 && y_distance == 0) || (y_distance >= 1 && x_distance == 0)
+
+  def default_pic
+    self.picture = 'whiterook.png' if color == 'White'
+    self.picture = 'blackrook.png' if color == 'Black'
   end
 end
