@@ -1,4 +1,2 @@
-class Pawn < ChessPiece
-  belongs_to :game
-  belongs_to :users
+class Pawn < Piece
 end

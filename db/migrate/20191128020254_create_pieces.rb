@@ -12,5 +12,6 @@ class CreatePieces < ActiveRecord::Migration[5.2]
       t.datetime :updated_at
       t.timestamps
     end
+    drop_table :chess_pieces
   end
 end
