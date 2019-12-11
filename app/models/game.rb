@@ -1,11 +1,12 @@
 class Game < ApplicationRecord
-  belongs_to :black_player, class_name: 'User', foreign_key: 'black_player_id', optional: true
-  belongs_to :white_player, class_name: 'User', foreign_key: 'white_player_id', optional: true
   has_many :pieces
+  belongs_to :black_player, class_name: 'User', foreign_key: 'black_player_id', optional: true 
+  belongs_to :white_player, class_name: 'User', foreign_key: 'white_player_id', optional: true
 
   after_create :populate_board!
 
   def populate_board!
+
     #white Pieces
     (0..7).each do |i|
       Piece.create!(game_id: self.id, type: "Pawn", x_position: i, y_position: 6, player_id: self.white_player_id, color: "white")
@@ -37,6 +38,6 @@ class Game < ApplicationRecord
       return true
     else
       return false
-    end
   end
+ end
 end
