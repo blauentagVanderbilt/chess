@@ -1,4 +1,4 @@
-class King < ChessPiece
+class King < Piece
   belongs_to :game
   belongs_to :users
 
@@ -9,5 +9,3 @@ class King < ChessPiece
     x_distance == 1 || y_distance == 1
   end
 
-
-end
