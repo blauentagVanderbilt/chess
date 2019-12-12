@@ -1,3 +1,26 @@
-
-<h1>Hello World</h1>
-
+<div class="background">
+  <div class = "container">
+   <!-- UNMATCHED GAMES -->
+    <div class="section">
+     <h1 class="text-center space">Join A Match</h1>
+      <div class="row matches" >
+          <% if @unmatched_games.any? %>
+            <% @unmatched_games.each do |game| %>
+              <div class="row indexgame">
+                <span class="column">
+                  <h5 class="text-center"><%= "Game #{game.name}" %></h5>
+                    <% if game.black_player_id.blank? %>
+                      <%= simple_form_for game, url: join_game_path(game) do |f| %>
+                        <h6 class="text-center"><%= "Opponent: #{game.white_player_id}" %></h5></span>
+                        <%= f.input :black_player_id, as: :hidden, :input_html => { :value => current_user.id } %>
+                        <span class="column turn"><%= f.submit "Join Game", class: "btn btn-secondary" %></span>
+                      <% end %>
+                    <% end %>
+                </span>   
+              </div>      
+          <% end %>
+        <% end %>
+      </div>
+    </div>    
+  </div>
+</div>
