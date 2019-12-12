@@ -1,2 +1,4 @@
 class Pawn < Piece
+
+
 end
