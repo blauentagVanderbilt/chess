@@ -12,7 +12,7 @@
                     <% if game.black_player_id.blank? %>
                       <%= simple_form_for game, url: join_game_path(game) do |f| %>
                         <h6 class="text-center"><%= "Opponent: #{game.white_player_id}" %></h5></span>
-                        <%= f.input :black_player_id, as: :hidden, :input_html => { :value => current_user.id } %>
+                        <%= f.input :black_player_id, as: :hidden %>
                         <span class="column turn"><%= f.submit "Join Game", class: "btn btn-secondary" %></span>
                       <% end %>
                     <% end %>
