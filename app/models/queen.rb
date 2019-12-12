@@ -1,4 +1,3 @@
-class Queen < ChessPiece
-  belongs_to :game
-  belongs_to :users
+class Queen < Piece
+  
 end

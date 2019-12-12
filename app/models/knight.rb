@@ -1,4 +1,3 @@
-class Knight < ChessPiece
-  belongs_to :game
-  belongs_to :users
+class Knight < Piece
+  
 end

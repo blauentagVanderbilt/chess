@@ -1,6 +1,5 @@
-class King < ChessPiece
-  belongs_to :game
-  belongs_to :users
+class King < Piece
+  
 
   def valid_move?(new_x_position, new_y_position)
     x_distance = x_distance(new_x_position)
