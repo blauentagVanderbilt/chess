@@ -4,7 +4,7 @@ class GamesController < ApplicationController
 
   def index
     @games = Game.all
-    @unmatched_games = Game.where(:white_player_id => nil).where.not(:black_player_id => nil).or (Game.where.not(:white_player_id => nil).where(:black_player_id => nil))
+    @unmatched_games = Game.where(:black_player_id => nil).where.not(:white_player_id => nil)
   end
 
   def new
