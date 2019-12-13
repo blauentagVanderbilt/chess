@@ -3,6 +3,16 @@ class Piece < ApplicationRecord
   belongs_to :game
   validates :type, inclusion: { in: %w(Pawn Rook Bishop Knight King Queen) }
 
+
+
+  def x_distance(new_x_position)
+    (new_x_position - x_position).abs
+  end
+
+  def y_distance(new_y_position)
+    (new_y_position - y_position).abs
+  end
+
   def move_to!(x, y)
     return false unless valid_move?(x, y)
     victim = occupant_piece(x, y)
@@ -42,7 +52,6 @@ class Piece < ApplicationRecord
   def y_distance(new_y_position)
     (new_y_position - y_position).abs
   end
-
 
 end
 
