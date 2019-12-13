@@ -1,7 +1,6 @@
 class Piece < ApplicationRecord
   enum color: %i[black white]
   belongs_to :game
-  belongs_to :user
   validates :type, inclusion: { in: %w(Pawn Rook Bishop Knight King Queen) }
 
   def move_to!(x, y)

@@ -8,4 +8,3 @@ class King < Piece
   end
 end
 
-end
