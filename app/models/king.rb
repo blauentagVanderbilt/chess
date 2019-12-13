@@ -6,5 +6,6 @@ class King < Piece
 
     x_distance == 1 || y_distance == 1
   end
+end
 
 end
