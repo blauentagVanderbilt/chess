@@ -4,8 +4,6 @@ RSpec.describe King, type: :model do
 
   describe "#vaild move?" do
     it "should return true to move one square foward" do
-      user = FactoryBot.create(:user)
-      sign_in user
       game = Game.create
       king = FactoryBot.create :king, x_position: 5, y_position: 5, game_id: game.id
       expect(king.valid_move?(6, 5)).to eq(true)
