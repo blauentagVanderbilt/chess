@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :join]
   
 
   def index
@@ -26,6 +26,14 @@ class GamesController < ApplicationController
 
   def update
 
+  end
+
+  def join
+    @game = Game.find(params[:id])
+     
+    @game.update_attributes(game_params)
+    @game.white_player_id << current_user.id
+      redirect_to game_path(@game)
   end
 
 
