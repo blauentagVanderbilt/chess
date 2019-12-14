@@ -1,8 +1,10 @@
 class GamesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
   
+
   def index
     @games = Game.all
+    @unmatched_games = Game.where(:black_player_id => nil).where.not(:white_player_id => nil)
   end
 
   def new
@@ -21,6 +23,12 @@ class GamesController < ApplicationController
   def show
     @game = Game.find(params[:id])
   end
+
+  def update
+
+  end
+
+
   private
 
   def game_params

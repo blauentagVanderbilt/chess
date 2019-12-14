@@ -1,2 +1,56 @@
 @import "bootstrap";
 
+.booyah-box {
+  -moz-box-shadow: 1px 1px 2px 0 #d0d0d0;
+  -webkit-box-shadow: 1px 1px 2px 0 #d0d0d0;
+  box-shadow: 2px 2px 4px 0 #d0d0d0;
+  background: #E6EAED;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  border-color: #9a9a98 #b3b3b2 #b3b3b2 #9a9a98;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px 30px;
+}
+
+.background {
+  background: image_url('background3.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100%;
+  min-height: 800px;
+  height: auto;
+}
+
+.new {
+  margin-bottom: 15px;
+}
+
+.new_game {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.section {
+  display: block;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: rgba(1, 1, 1, 0.5);
+  color: white;
+  border: 2px solid;
+  border-radius: 20px;
+  border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  padding: 20px 20px 20px;
+  min-width: 600px;
+}
+
+.indexgame {
+    width: 325px;
+    padding: 10px;
+    padding-left: 150px;
+    padding-right: 150px;
+}
