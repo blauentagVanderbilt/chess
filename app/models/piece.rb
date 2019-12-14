@@ -45,14 +45,6 @@ class Piece < ApplicationRecord
     victim.update(x_position: nil, y_position: nil, captured: true)
   end
 
-  def x_distance(new_x_position)
-    (new_x_position - x_position).abs
-  end
-
-  def y_distance(new_y_position)
-    (new_y_position - y_position).abs
-  end
-
 end
 
 def contains_own_piece?(x_end, y_end)
@@ -80,9 +72,38 @@ def is_obstructed(x_end, y_end)
     end
 
     contains_own_piece?(x_end, y_end) && obstruction_array.any?{|square| game.contains_piece?(square[1]) == true}
+  end 
 
+  def clear_horizontal_move?(x, y)
+    return false unless y_distance(y).zero?
+    distance = x_distance(x)
+    path_clear?(x, y, distance)
+  end
+
+  def clear_diagonal_move?(x, y)
+    return false unless x_distance(x) == y_distance(y)
+    distance = x_distance(x)
+    path_clear?(x, y, distance)
+  end
+
+  def clear_vertical_move?(x, y)
+    return false unless x_distance(x).zero?
+    distance = y_distance(y)
+    path_clear?(x, y, distance)
+  end
+
+
+  def path_clear?(x, y, distance)
+    coordinates = (x, y, distance)
+    coordinates.each do |coord|
+      return false if game.pieces.exists?(x_position: coord[0],\
+                                          y_position: coord[1])
+    end
+    true
+  end
 end
       
+
 
 
 
