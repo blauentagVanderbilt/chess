@@ -3,16 +3,6 @@ class Piece < ApplicationRecord
   belongs_to :game
   validates :type, inclusion: { in: %w(Pawn Rook Bishop Knight King Queen) }
 
-
-
-  def x_distance(new_x_position)
-    (new_x_position - x_position).abs
-  end
-
-  def y_distance(new_y_position)
-    (new_y_position - y_position).abs
-  end
-
   def move_to!(x, y)
     return false unless valid_move?(x, y)
     victim = occupant_piece(x, y)
@@ -45,6 +35,37 @@ class Piece < ApplicationRecord
     victim.update(x_position: nil, y_position: nil, captured: true)
   end
 
+  def clear_horizontal_move?(x, y)
+    return false unless y_distance(y).zero?
+    distance = x_distance(x)
+    path_clear?(x, y, distance)
+  end
+
+  def clear_diagonal_move?(x, y)
+    return false unless x_distance(x) == y_distance(y)
+    distance = x_distance(x)
+    path_clear?(x, y, distance)
+  end
+
+  def clear_vertical_move?(x, y)
+    return false unless x_distance(x).zero?
+    distance = y_distance(y)
+    path_clear?(x, y, distance)
+  end
+
+  def path_clear?(x, y, distance)
+    coordinates = generate_path_coordinates(x, y, distance)
+    coordinates.each do |coord|
+      return false if game.pieces.exists?(x_position: coord[0],\
+                                          y_position: coord[1])
+    end
+    true
+  end
+  
+  def moved?(x, y)
+    x != x_position || y != y_position
+  end
+
   def x_distance(new_x_position)
     (new_x_position - x_position).abs
   end
@@ -53,35 +74,33 @@ class Piece < ApplicationRecord
     (new_y_position - y_position).abs
   end
 
-end
+  def contains_own_piece?(x_end, y_end)
+    piece = game.pieces.where("x_position = ? AND y_position = ?", x_end, y_end).first
+    piece.present? && piece.white? == white?
+  end
 
-def contains_own_piece?(x_end, y_end)
-  piece = game.pieces.where("x_position = ? AND y_position = ?", x_end, y_end).first
-  piece.present? && piece.white? == white?
-end
+  def is_obstructed(x_end, y_end)
+    y_change = y_position - y_end
+    x_change = x_position - x_end
 
-def is_obstructed(x_end, y_end)
-  y_change = y_position - y_end
-  x_change = x_position - x_end
-
-  obstruction_array = []
-    if x_change.abs == 0
-      y_change.abs.times do |i|
-        obstruction_array << [x_position, y_position - (y_change/y_change.abs) * (i + 1)]
+    obstruction_array = []
+      if x_change.abs == 0
+        y_change.abs.times do |i|
+          obstruction_array << [x_position, y_position - (y_change/y_change.abs) * (i + 1)]
+        end
+      elseif y_change.abs == 0
+        x_change.abs.times do |i|
+          obstruction_array << [x_position - (x_change/x_change.abs) * (i + 1), y_position]
+        end
+      elsif y_change.abs == x_change.abs
+        y_change.abs.times do |i|
+          obstruction_array << [x_position - (x_change/x_change.abs) * (i +1), y_position - (y_change/y_change.abs) * (i + 1)]
+        end
       end
-    elseif y_change.abs == 0
-      x_change.abs.times do |i|
-        obstruction_array << [x_position - (x_change/x_change.abs) * (i + 1), y_position]
-      end
-    elsif y_change.abs == x_change.abs
-      y_change.abs.times do |i|
-        obstruction_array << [x_position - (x_change/x_change.abs) * (i +1), y_position - (y_change/y_change.abs) * (i + 1)]
-      end
-    end
 
-    contains_own_piece?(x_end, y_end) && obstruction_array.any?{|square| game.contains_piece?(square[1]) == true}
+      contains_own_piece?(x_end, y_end) && obstruction_array.any?{|square| game.contains_piece?(square[1]) == true}
 
-end
+  end
       
 
 
