@@ -35,6 +35,35 @@ class Piece < ApplicationRecord
   def capture!(victim)
     victim.update(x_position: nil, y_position: nil, captured: true)
   end
+
+  def clear_horizontal_move?(x, y)
+    return false unless y_distance(y).zero?
+    distance = x_distance(x)
+    path_clear?(x, y, distance)
+  end
+
+  def clear_diagonal_move?(x, y)
+    return false unless x_distance(x) == y_distance(y)
+    distance = x_distance(x)
+    path_clear?(x, y, distance)
+  end
+
+  def clear_vertical_move?(x, y)
+    return false unless x_distance(x).zero?
+    distance = y_distance(y)
+    path_clear?(x, y, distance)
+  end
+
+
+  def path_clear?(x, y, distance)
+    coordinates = (x, y, distance)
+    coordinates.each do |coord|
+      return false if game.pieces.exists?(x_position: coord[0],\
+                                          y_position: coord[1])
+    end
+    true
+  end
 end
+
 
 
