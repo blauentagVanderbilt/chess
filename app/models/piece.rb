@@ -69,7 +69,7 @@ def is_obstructed(x_end, y_end)
       y_change.abs.times do |i|
         obstruction_array << [x_position, y_position - (y_change/y_change.abs) * (i + 1)]
       end
-    elseif y_change.abs == 0
+    elsif y_change.abs == 0
       x_change.abs.times do |i|
         obstruction_array << [x_position - (x_change/x_change.abs) * (i + 1), y_position]
       end
