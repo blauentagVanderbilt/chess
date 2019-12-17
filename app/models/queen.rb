@@ -1,4 +1,5 @@
 class Queen < Piece
+
   def valid_move?(x, y)
     moved?(x, y) &&
       [

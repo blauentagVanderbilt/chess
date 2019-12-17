@@ -15,13 +15,6 @@ ActiveRecord::Schema.define(version: 2019_11_28_020254) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "chess_pieces", force: :cascade do |t|
-    t.integer "color", null: false
-    t.integer "x_pos", null: false
-    t.integer "y_pos", null: false
-    t.string "type", null: false
-  end
-
   create_table "games", force: :cascade do |t|
     t.string "name"
     t.integer "white_player_id"
@@ -33,7 +26,8 @@ ActiveRecord::Schema.define(version: 2019_11_28_020254) do
   create_table "pieces", force: :cascade do |t|
     t.integer "x_position"
     t.integer "y_position"
-    t.string "piece_type"
+    t.string "type"
+    t.integer "color"
     t.integer "player_id"
     t.integer "game_id"
     t.datetime "created_at", null: false
