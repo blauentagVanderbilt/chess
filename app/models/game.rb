@@ -6,7 +6,30 @@ class Game < ApplicationRecord
   after_create :populate_board!
 
   def populate_board!
+    #white Pieces
+    (0..7).each do |i|
+      Piece.create!(game_id: self.id, type: "Pawn", x_position: i, y_position: 6, player_id: self.white_player_id, color: "white")
+    end
    Piece.create!(game_id: self.id, type: "King", x_position: 3, y_position: 7, player_id: self.white_player_id, color: "white")
+   Piece.create!(game_id: self.id, type: "Queen", x_position: 4, y_position: 7, player_id: self.white_player_id, color: "white")
+   Piece.create!(game_id: self.id, type: "Rook", x_position: 0, y_position: 7, player_id: self.white_player_id, color: "white")
+   Piece.create!(game_id: self.id, type: "Rook", x_position: 7, y_position: 7, player_id: self.white_player_id, color: "white")
+   Piece.create!(game_id: self.id, type: "Knight", x_position: 1, y_position: 7, player_id: self.white_player_id, color: "white")
+   Piece.create!(game_id: self.id, type: "Knight", x_position: 6, y_position: 7, player_id: self.white_player_id, color: "white")
+   Piece.create!(game_id: self.id, type: "Bishop", x_position: 2, y_position: 7, player_id: self.white_player_id, color: "white")
+   Piece.create!(game_id: self.id, type: "Bishop", x_position: 5, y_position: 7, player_id: self.white_player_id, color: "white")
+    #Black Pieces
+    (0..7).each do |i|
+      Piece.create!(game_id: self.id, type: "Pawn", x_position: i, y_position: 1, player_id: self.white_player_id, color: "black")
+    end
+   Piece.create!(game_id: self.id, type: "King", x_position: 3, y_position: 0, player_id: self.black_player_id, color: "black")
+   Piece.create!(game_id: self.id, type: "Queen", x_position: 4, y_position: 0, player_id: self.black_player_id, color: "black")
+   Piece.create!(game_id: self.id, type: "Rook", x_position: 0, y_position: 0, player_id: self.black_player_id, color: "black")
+   Piece.create!(game_id: self.id, type: "Rook", x_position: 7, y_position: 0, player_id: self.black_player_id, color: "black")
+   Piece.create!(game_id: self.id, type: "Knight", x_position: 1, y_position: 0, player_id: self.black_player_id, color: "black")
+   Piece.create!(game_id: self.id, type: "Knight", x_position: 6, y_position: 0, player_id: self.black_player_id, color: "black")
+   Piece.create!(game_id: self.id, type: "Bishop", x_position: 2, y_position: 0, player_id: self.black_player_id, color: "black")
+   Piece.create!(game_id: self.id, type: "Bishop", x_position: 5, y_position: 0, player_id: self.black_player_id, color: "black")
   end
 
   def contains_piece?(x_position, y_position)
@@ -14,7 +37,6 @@ class Game < ApplicationRecord
       return true
     else
       return false
-      end
     end
   end
 end

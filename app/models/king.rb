@@ -5,10 +5,11 @@ class King < Piece
     y_distance = y_distance(new_y_position)
 
     x_distance == 1 || y_distance == 1
+  end
 
   def default_pic
-    self.picture = 'whiteking.png' if color == 'White'
-    self.picture = 'blackking.png' if color == 'Black'
+    self.picture = 'whiteking.png' if color == 'white'
+    self.picture = 'blackking.png' if color == 'black'
 
   end
 end

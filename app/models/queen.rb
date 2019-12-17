@@ -4,7 +4,7 @@ class Queen < Piece
   end
 
   def default_pic
-    self.picture = 'whitequeen.png' if color == 'White'
-    self.picture = 'blackqueen.png' if color == 'Black'
+    self.picture = 'whitequeen.png' if color == 'white'
+    self.picture = 'blackqueen.png' if color == 'black'
   end
 end

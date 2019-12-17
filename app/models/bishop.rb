@@ -1,5 +1,5 @@
 class Bishop < Piece
-  
+
   def valid_move?(new_x_position, new_y_position)
     if is_obstructed?(new_x_position, new_y_position)
       return false
@@ -11,7 +11,7 @@ class Bishop < Piece
   end
 
   def default_pic
-    self.picture = 'whitebishop.png' if color == 'White'
-    self.picture = 'blackbishop.png' if color == 'Black'
+    self.picture = 'whitebishop.png' if color == 'white'
+    self.picture = 'blackbishop.png' if color == 'black'
   end
 end
