@@ -9,8 +9,8 @@ before_script:
   - psql -c 'create database chess_test;' -U postgres
 
 before_install:
+  - gem update --system
   - gem update bundler
-  - gem install bundler
 
 script:
   - bundle exec rake db:migrate RAILS_ENV=test
