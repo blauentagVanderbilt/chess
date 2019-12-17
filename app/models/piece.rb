@@ -63,6 +63,10 @@ class Piece < ApplicationRecord
     end
     true
   end
+  
+  def moved?(x, y)
+    x != x_position || y != y_position
+  end
 end
 
 
