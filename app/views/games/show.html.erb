@@ -1,20 +1,22 @@
-<table class="chess-board">
-  <thead>
-    <tr class="row">
-      <th class="blank"></th>
-      <% 8.times do %>
-        <th></th>
-      <% end %>
-    </tr>
-  </thead>
-  <tbody>
-    <% 8.times do |y| %>
+<div class="col-10 center offset-1">
+  <table class="chess-board">
+    <thead>
       <tr class="row">
-        <th></th>
-        <% 8.times do |x| %>
-          <td class="square" data-x="<%= x %>" data-y="<%= y %>"></td>
+        <th class="blank"></th>
+        <% 8.times do %>
+          <th></th>
         <% end %>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% 8.times do |y| %>
+        <tr class="row">
+          <th></th>
+          <% 8.times do |x| %>
+            <td class="square" data-x="<%= x %>" data-y="<%= y %>"></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
