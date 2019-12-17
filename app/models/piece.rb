@@ -101,6 +101,10 @@ def is_obstructed(x_end, y_end)
     end
     true
   end
+  
+  def moved?(x, y)
+    x != x_position || y != y_position
+  end
 end
       
 
