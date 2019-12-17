@@ -1,6 +1,6 @@
 <table class="chess-board">
   <thead>
-    <tr>
+    <tr class="row">
       <th class="blank"></th>
       <% 8.times do %>
         <th></th>
@@ -8,15 +8,13 @@
     </tr>
   </thead>
   <tbody>
-    <% 8.times do %>
-      <tr>
+    <% 8.times do |y| %>
+      <tr class="row">
         <th></th>
-        <% 8.times do %>
-          <td></td>
+        <% 8.times do |x| %>
+          <td class="square" data-x="<%= x %>" data-y="<%= y %>"></td>
         <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-
