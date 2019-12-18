@@ -33,6 +33,10 @@ class Game < ApplicationRecord
    Piece.create!(game_id: self.id, type: "Bishop", x_position: 5, y_position: 0, player_id: self.black_player_id, color: "black")
   end
 
+  def piece_for_position(x_position, y_position)
+    pieces.where("(x_position = ? AND y_position = ?)", x_position, y_position).first
+  end
+
   def contains_piece?(x_position, y_position)
     if pieces.where("(x_position = ? AND y_position = ?)", x_position, y_position).any?
       return true

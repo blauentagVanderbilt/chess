@@ -13,7 +13,12 @@
         <tr class="row">
           <th></th>
           <% 8.times do |x| %>
-            <td class="square" data-x="<%= x %>" data-y="<%= y %>"></td>
+            <td class="square" data-x="<%= x %>" data-y="<%= y %>">
+              <% piece = @game.piece_for_position(x, y) %>
+                <% if piece %>
+                  <%= image_tag(piece.image) %>
+                <% end %>
+            </td>
           <% end %>
         </tr>
       <% end %>
