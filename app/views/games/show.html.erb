@@ -27,4 +27,11 @@
 </div>
 
 
+<h1> This is the game page</h1>
+<h5>These are the players</h5>
+  <p>White player: <%= @game.white_player_id %></p>
+  <p>Black player: <%= @game.black_player_id %></p>
+  <%= simple_form_for @game, url: forfeit_game_path(@game) do |f| %>
+    <%= f.submit "I FORFEIT!", class: "btn btn-primary col-4" %>
+  <% end %>
 
