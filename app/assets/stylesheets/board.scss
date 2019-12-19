@@ -37,7 +37,7 @@ body {
 
 .chess-board tr:nth-child(odd) td:nth-of-type(even),
 .chess-board tr:nth-child(even) td:nth-of-type(odd){
-  background: #222;
+  background: #555;
 }
 
 $column-names: (A B C D E F G H);
