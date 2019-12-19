@@ -13,7 +13,7 @@
                       <%= simple_form_for game, url: join_game_path(game) do |f| %>
                         <h6 class="text-center"><%= "Opponent: #{game.white_player_id}" %></h5></span>
                         <%= f.input :black_player_id, as: :hidden %>
-                        <%= image_tag 'black-pieces.jpg' , class: 'img-fluid' %>
+                        <%= image_tag 'black-pieces.png' , class: 'img-fluid' %>
                         <br />
                         <br />
                         <span class="column turn"><%= f.submit "Join Game", class: "btn btn-secondary" %></span>
