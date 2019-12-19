@@ -45,5 +45,20 @@ class Game < ApplicationRecord
     end
   end
 
+ def white_player
+    User.find_by_id(white_player_id)
+  end
+
+  def black_player
+    User.find_by_id(black_player_id)
+  end
+
+  def winner
+    User.find_by_id(winner_player_id)
+  end
+
+  def loser
+    User.find_by_id(loser_player_id)
+  end
 
 end
