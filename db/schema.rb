@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2019_12_11_015253) do
     t.integer "x_position"
     t.integer "y_position"
     t.string "type"
-    t.string "white?"
+    t.string "color"
     t.string "name"
     t.integer "user_id"
     t.integer "game_id"
