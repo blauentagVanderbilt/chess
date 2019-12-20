@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2019_12_11_015253) do
     t.string "name"
     t.integer "white_player_id"
     t.integer "black_player_id"
+    t.integer "winner_user_id"
+    t.integer "turn_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -27,8 +29,9 @@ ActiveRecord::Schema.define(version: 2019_12_11_015253) do
     t.integer "x_position"
     t.integer "y_position"
     t.string "type"
-    t.integer "color"
-    t.integer "player_id"
+    t.string "white?"
+    t.string "name"
+    t.integer "user_id"
     t.integer "game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
