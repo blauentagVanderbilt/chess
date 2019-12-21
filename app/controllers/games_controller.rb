@@ -54,7 +54,7 @@ class GamesController < ApplicationController
 
   def game_params
 
-    params.require(:game).permit(:name).merge(black_player_id: current_user.id)
+    params.require(:game).permit(:name).merge(white_player_id: current_user.id)
 
   end
 
