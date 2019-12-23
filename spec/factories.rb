@@ -7,6 +7,10 @@ FactoryBot.define do
 
   end
 
+  factory :pawn do
+
+  end
+
   factory :user do
     sequence :email do |n|
       "dummyEmail#{n}@gmail.com" 
