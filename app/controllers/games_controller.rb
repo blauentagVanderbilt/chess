@@ -34,7 +34,7 @@ class GamesController < ApplicationController
     
      
     @game.update_attributes(game_params)
-    @game.black_player_id << current_user.id
+    @game.white_player_id << current_user.id
       redirect_to game_path(@game)
   end
 
