@@ -21,7 +21,7 @@ class Game < ApplicationRecord
    Piece.create!(game_id: self.id, type: "Bishop", x_position: 5, y_position: 7, user_id: self.white_player_id, color: "white")
     #Black Pieces
     (0..7).each do |i|
-      Piece.create!(game_id: self.id, type: "Pawn", x_position: i, y_position: 1, user_id: self.white_player_id, color: "black")
+      Piece.create!(game_id: self.id, type: "Pawn", x_position: i, y_position: 1, user_id: self.black_player_id, color: "black")
     end
    Piece.create!(game_id: self.id, type: "King", x_position: 3, y_position: 0, user_id: self.black_player_id, color: "black")
    Piece.create!(game_id: self.id, type: "Queen", x_position: 4, y_position: 0, user_id: self.black_player_id, color: "black")

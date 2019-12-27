@@ -28,6 +28,7 @@
                       <br />
                       <span class="column turn"><%= f.submit "Join as white player", class: "btn btn-secondary" %></span>
                     <% end %>
+                  <% end %>
           
                   <% else %>
                     <%= simple_form_for game, url: join_game_path(game) do |f| %>
