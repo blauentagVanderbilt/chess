@@ -1,5 +1,5 @@
 class Piece < ApplicationRecord
-  enum color: %i[black white]
+  #enum color: %i[black white]
   belongs_to :game
   validates :type, inclusion: { in: %w(Pawn Rook Bishop Knight King Queen) }
 
@@ -81,7 +81,7 @@ class Piece < ApplicationRecord
   end
 
   def image
-    "#{color}#{type}.png"
+    "#{color}#{type.downcase}.png"
   end
 
   def up?(new_y_position)
