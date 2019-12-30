@@ -11,4 +11,16 @@ class Game < ApplicationRecord
       return false
     end
   end
+
+  def in_check?(color)
+    king = pieces.find_by(type: 'King', color: color)
+    opponent_pieces(color).each do |p|
+      return true if p.valid_move?(king.x_position, king.y_position)
+    end
+    false
+  end
+
+  def opponent_pieces(color)
+    pieces.select { |p| p.color != color && p.captured != true }
+  end
 end

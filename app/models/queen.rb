@@ -1,11 +1,9 @@
 class Queen < Piece
 
-  def valid_move?(x, y)
-    moved?(x, y) &&
-      [
-        clear_horizontal_move?(x, y),
-        clear_vertical_move?(x, y),
-        clear_diagonal_move?(x, y)
-      ].any?
-  end
+  def valid_move?(x_destination, y_destination)
+      ((x_coordinates == x_destination || y_coordinates == y_destination) ||
+      ((x_coordinates - x_destination).abs == (y_coordinates - y_destination).abs)) &&
+      is_obstructed?([x_destination, y_destination])
+    end
 end
+
