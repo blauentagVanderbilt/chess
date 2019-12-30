@@ -43,27 +43,10 @@ class Piece < ApplicationRecord
     victim.update(x_position: nil, y_position: nil, captured: true)
   end
 
-<<<<<<< HEAD
-end
-
-def contains_own_piece?(x_end, y_end)
-  piece = game.pieces.where("x_position = ? AND y_position = ?", x_end, y_end).first
-  piece.present? && piece.white? == white?
-end
-=======
-  def x_distance(new_x_position)
-    (new_x_position - x_position).abs
-  end
-
-  def y_distance(new_y_position)
-    (new_y_position - y_position).abs
-  end
-
   def contains_own_piece?(x_end, y_end)
     piece = game.pieces.where("x_position = ? AND y_position = ?", x_end, y_end).first
     piece.present? && piece.color == color
   end
->>>>>>> 18ac0e65279ec3769559af2ccf87f3cef1475ea9
 
   def is_obstructed(x_end, y_end)
     y_change = y_position - y_end
@@ -85,11 +68,9 @@ end
     end
 
     contains_own_piece?(x_end, y_end) && obstruction_array.any?{|square| game.contains_piece?(square[1]) == true}
-<<<<<<< HEAD
+
   end 
  
-=======
-  end
 
   def image
     "#{color}#{type.downcase}.png"
@@ -102,8 +83,6 @@ end
   def down(new_y_position)
     return ((y_position - new_y_position) < 0)
   end
-
->>>>>>> 18ac0e65279ec3769559af2ccf87f3cef1475ea9
 end
       
 
