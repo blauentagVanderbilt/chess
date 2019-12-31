@@ -39,7 +39,7 @@ RSpec.describe Pawn, type: :model do
     it "should return true for black pawn to move one square forward" do
       game = Game.create
       pawn = FactoryBot.create :pawn, x_position: 5, y_position: 5, game_id: game.id, color: "black"
-      expect(pawn.valid_move?(5, 6)).to eq(true)
+      expect(pawn.valid_move?(5, 4)).to eq(true)
     end
 
     it "should return false for white pawn to move backward" do
@@ -65,6 +65,37 @@ RSpec.describe Pawn, type: :model do
       pawn = FactoryBot.create :pawn, x_position: 5, y_position: 2, game_id: game.id, color: "white"
       expect(pawn.valid_move?(6, 2)).to eq(false)
     end
+  
+#----- En Passant ------#
+    
+    it "should return true for black pawn to capture white pawn en passant" do
+      game = Game.create
+      black_pawn = FactoryBot.create :pawn, x_position: 2, y_position: 5, game_id: game.id, color: "black"
+      white_pawn = FactoryBot.create :pawn, x_position: 1, y_position: 5, game_id: game.id, color: "white", move_number: 1
+      expect(black_pawn.en_passant?(1, 6)).to eq(true)
+    end
+
+    it "should return false for black pawn to capture white pawn en passant if not white's first move" do
+      game = Game.create
+      black_pawn = FactoryBot.create :pawn, x_position: 2, y_position: 5, game_id: game.id, color: "black"
+      white_pawn = FactoryBot.create :pawn, x_position: 1, y_position: 5, game_id: game.id, color: "white", move_number: 2
+      expect(black_pawn.en_passant?(1, 6)).to eq(false)
+    end
+
+    it "should return false when white pawn is not in valid position" do
+      game = Game.create
+      black_pawn = FactoryBot.create :pawn, x_position: 2, y_position: 5, game_id: game.id, color: "black"
+      white_pawn = FactoryBot.create :pawn, x_position: 4, y_position: 5, game_id: game.id, color: "white", move_number: 1
+      expect(black_pawn.en_passant?(1, 6)).to eq(false)
+    end
+
+    it "should return false for black pawn to capture white rook en passant" do
+      game = Game.create
+      black_pawn = FactoryBot.create :pawn, x_position: 2, y_position: 5, game_id: game.id, color: "black"
+      white_rook = FactoryBot.create :rook, x_position: 1, y_position: 5, game_id: game.id, color: "white", move_number: 1
+      expect(black_pawn.en_passant?(1, 6)).to eq(false)
+    end
+
   end
 
 end
