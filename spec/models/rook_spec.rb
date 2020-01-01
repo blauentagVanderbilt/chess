@@ -9,7 +9,7 @@ RSpec.describe Rook, type: :model do
       expect(rook.valid_move?(5, 6)).to eq(true)
     end
 
-    it "should return trueto move three squares backward" do
+    it "should return true to move three squares backward" do
       game = Game.create
       rook = FactoryBot.create :rook, x_position: 5, y_position: 5, game_id: game.id
       expect(rook.valid_move?(5, 2)).to eq(true)
@@ -21,7 +21,7 @@ RSpec.describe Rook, type: :model do
       expect(rook.valid_move?(3, 5)).to eq(true)
     end
 
-    it "should return true to move two squares to the left" do
+    it "should return true to move two squares to the right" do
       game = Game.create
       rook = FactoryBot.create :rook, x_position: 5, y_position: 5, game_id: game.id
       expect(rook.valid_move?(7, 5)).to eq(true)
