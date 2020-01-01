@@ -10,4 +10,8 @@ class Bishop < Piece
     end
   end
 
+  def default_pic
+    self.picture = 'whitebishop.png' if color == 'white'
+    self.picture = 'blackbishop.png' if color == 'black'
+  end
 end
