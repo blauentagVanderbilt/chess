@@ -45,7 +45,19 @@ class Game < ApplicationRecord
     end
   end
 
- def white_player
+  def in_check?(color)
+    king = pieces.find_by(type: 'King', color: color)
+    opponent_pieces(color).each do |p|
+      return true if p.valid_move?(king.x_position, king.y_position)
+    end
+    false
+  end
+
+  def opponent_pieces(color)
+    pieces.select { |p| p.color != color && p.captured != true }
+  end
+
+  def white_player
     User.find_by_id(white_player_id)
   end
 
@@ -60,5 +72,4 @@ class Game < ApplicationRecord
   def loser
     User.find_by_id(loser_player_id)
   end
-
 end
