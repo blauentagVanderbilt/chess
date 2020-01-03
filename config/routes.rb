@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :users
+  resources :pieces
   resources :games do
     member do
       patch :join
