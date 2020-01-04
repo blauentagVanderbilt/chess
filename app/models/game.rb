@@ -57,14 +57,6 @@ class Game < ApplicationRecord
     pieces.select { |p| p.color != color && p.captured != true }
   end
 
-  def white_player
-    User.find_by_id(white_player_id)
-  end
-
-  def black_player
-    User.find_by_id(black_player_id)
-  end
-
   def winner
     User.find_by_id(winner_player_id)
   end

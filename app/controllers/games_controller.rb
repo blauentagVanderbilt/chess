@@ -11,7 +11,6 @@ class GamesController < ApplicationController
 
   def new
     @game = Game.new
-    @game.update_attributes(game_params)
   end
 
   def create
