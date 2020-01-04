@@ -1,10 +1,12 @@
 class GamesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :join, :forfeit]
+  before_action :verify_different_user, only:[:join]
   
 
   def index
     @games = Game.all
     @unmatched_games = Game.where(:black_player_id => nil).where.not(:white_player_id => nil).or (Game.where.not(:white_player_id => nil).where(:black_player_id => nil))
+    @started_games = Game.where.not(:white_player_id => nil).where.not(:black_player_id => nil).where(:winner_user_id => nil)
     @completed_games = Game.where(:state => "end")
   end
 
@@ -31,8 +33,9 @@ class GamesController < ApplicationController
 
   def join
     @game = Game.find(params[:id])
+    @pieces = @game.pieces
+    @pieces.where(user_id:nil).update_all(user_id: current_user.id)
     
-     
     @game.update_attributes(game_params)
     @game.white_player_id << current_user.id
       redirect_to game_path(@game)
@@ -40,12 +43,17 @@ class GamesController < ApplicationController
 
   def forfeit
     @game = Game.find(params[:id])
-    @game.update_attributes(game_params)
+    if current_user.id == @game.white_player_id
+      @game.update_attributes(winner_user_id: @game.black_player_id)
+    else
+      @game.update_attributes(winner_user_id: @game.white_player_id)
+    end
     redirect_to root_path
   end
 
   def destroy
     @game = Game.find(params[:id])
+    @game.pieces.destroy_all
     @game.destroy
     redirect_to root_path
   end
@@ -56,6 +64,14 @@ class GamesController < ApplicationController
 
     params.require(:game).permit(:name).merge(white_player_id: current_user.id)
 
+  end
+
+  def verify_different_user
+    @game = Game.find(params[:id])
+    if @game.turn_user_id == current_user
+      flash[:alert] = "You cannot join your own Game!"
+      redirect_to game_path
+    end
   end
 
 end

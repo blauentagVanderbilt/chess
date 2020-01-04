@@ -1,3 +1,4 @@
+<div class="background">
 <div class="col-10 center offset-1">
   <table class="chess-board">
     <thead>
@@ -59,11 +60,12 @@
     });
   });
 </script>
-
-<div class="col-10 center offset-1">
+<br />
+<br />
+<div class="section">
 <h1> This is the game page</h1>
 <h5>These are the game details</h5>
-<p><%= @game.inspect %></p>
+<p>Game Name: <%= @game.name %></p>
 <h5>These are the players</h5>
   <p>White player: <%= @game.white_player&.email %></p>
   <p>Black player: <%= @game.black_player&.email %></p>
@@ -74,9 +76,13 @@
     <% else %>
       <%= f.input :winner_user_id, as: :hidden, :input_html => { :value => @game.white_player&.id } %>
     <% end %>
-    <%= f.submit "I FORFEIT!", class: "btn btn-primary col-4" %>
+    <%= f.submit "Forfeit", class: "forfeit btn btn-danger btn-lg" %>
   <% end %>
 </div>
+</div>
+
+
+
 
 
 
