@@ -12,7 +12,7 @@
                     <% if game.white_player_id.blank? %>
                       <%= simple_form_for game, url: join_game_path(game) do |f| %>
                         <h6 class="text-center"><%= "Opponent: #{game.black_player_id}" %></h6></span>
-                        <%= f.input :white_player_id, as: :hidden, :input_html => { :value => current_user.id} %>
+                        <%= f.input :white_player_id, :input_html => { :value => current_user.id} %>
                         <%= f.input :turn_user_id, as: :hidden, :input_html => { :value => current_user.id} %>
                         <%= image_tag 'black-pieces.jpg' , class: 'img-fluid' %>
                       <br />
@@ -22,7 +22,7 @@
                   <% else %>
                     <%= simple_form_for game, url: join_game_path(game) do |f| %>
                       <h6 class="text-center"><%= "Opponent: #{game.white_player_id}" %></h6></span>
-                      <%= f.input :black_player_id, as: :hidden, :input_html => { :value => current_user.id} %>
+                      <%= f.input :black_player_id, :input_html => { :value => current_user.id} %>
                       <%= image_tag 'black-pieces.jpg' , class: 'img-fluid' %>
                       <br />
                       <br />
