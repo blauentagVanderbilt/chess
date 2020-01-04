@@ -2,16 +2,14 @@
   <div class="container">  
     <div class="section">
     <br />
-        <h1 class="text-center space">Start A New Game</h1>
-        
-        <%= simple_form_for @game do |f| %>
-          <%= f.input :name %>
-          <br />
-          <%= f.submit "Create Game", class: 'btn btn-primary' %>
-          <br />
-        <% end %>
+      <h1 class="text-center space">Start A New Game</h1>
+      <%= simple_form_for @game do |f| %>
+        <%= f.input :name %>
         <br />
-      
+        <%= f.submit "Create Game", class: 'btn btn-primary' %>
+        <br />
+      <% end %>
+      <br />
     </div>
   </div>
 </div>
