@@ -1,10 +1,10 @@
 class GamesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :join, :forfeit]
+  before_action :authenticate_user!, only: [:new, :create, :join, :forfeit, :index]
   
 
   def index
     @games = Game.all
-    @unmatched_games = Game.where(:black_player_id => nil).where.not(:white_player_id => nil).or (Game.where.not(:white_player_id => nil).where(:black_player_id => nil))
+    @unmatched_games = Game.where(:black_player_id => nil).where.not(:white_player_id => nil)
     @completed_games = Game.where(:state => "end")
   end
 
