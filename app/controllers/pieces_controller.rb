@@ -1,8 +1,8 @@
 class PiecesController < ApplicationController
-   before_action :find_piece, :verify_two_players, :verify_player_turn
+   before_action :authenticate_user!, only: [:update]
 
    def update
-    @game = @piece.game
+    @piece = Piece.find(params[:id])
       if @piece.valid_move?(params[:x].to_i, params[:y].to_i)
         render json: {success: true}
       elsif
@@ -21,23 +21,16 @@ class PiecesController < ApplicationController
     end
   end
 
-  def switch_turns
-    if @game.white_player_id == @game.turn_user_id
-      @game.update_attributes(turn_user_id:@game.black_player_id)
-    elsif @game.black_player_id == @game.turn_user_id
-      @game.update_attributes(turn_user_id:@game.white_player_id)
-    end
-  end
-
   def find_piece
     @piece = Piece.find(params[:id])
     @game = @piece.game
   end
 
-  def verify_player_turn
-    return if correct_turn? && ((@piece.game.white_player_id == current_user.id && @piece.white?) || (@piece.game.black_player_id == current_user.id && piece.black?))
-    respond_to do |format|
-      format.json {render :json => { message: "Not your turn yet!", class: "alert alert-warning"}, status:422}
+  def switch_turns
+    if @game.white_player_id == @game.current_user_id
+      @game.update_attributes(turn_user_id:@game.black_player_id)
+    elsif @game.black_player_id == @game.current_user_id
+      @game.update_attributes(turn_user_id:@game.white_player_id)
     end
   end
 
