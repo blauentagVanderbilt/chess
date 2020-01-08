@@ -9,31 +9,20 @@
               <div class="row indexgame">
                 <span class="column">
                   <h5 class="text-center"><%= "Game #{game.name}" %></h5>
-                    <% if game.black_player_id.blank? %>
+                    <% if game.white_player_id.blank? %>
                       <%= simple_form_for game, url: join_game_path(game) do |f| %>
-                        <h6 class="text-center"><%= "Opponent: #{game.white_player_id}" %></h5></span>
-                        <%= f.input :black_player_id, as: :hidden %>
+                        <h6 class="text-center"><%= "Opponent: #{game.black_player_id}" %></h6></span>
+                        <%= f.input :white_player_id, :input_html => { :value => current_user.id} %>
+                        <%= f.input :turn_user_id, as: :hidden, :input_html => { :value => current_user.id} %>
                         <%= image_tag 'black-pieces.jpg' , class: 'img-fluid' %>
-                        <br />
-                        <br />
-                        <span class="column turn"><%= f.submit "Join Game", class: "btn btn-secondary" %></span>
+                      <br />
+                      <br />
+                        <span class="column turn"><%= f.submit "Join as white player", class: "btn btn-secondary" %></span>
                       <% end %>
-                <% if game.white_player_id.blank? %>
-                    <%= simple_form_for game, url: join_game_path(game) do |f| %>
-                      <h6 class="text-center"><%= "Opponent: #{game.black_player_id}" %></h6></span>
-                      <%= f.input :white_player_id, as: :hidden, :input_html => { :value => current_user.id} %>
-                      <%= f.input :turn_user_id, as: :hidden, :input_html => { :value => current_user.id} %>
-                      <%= image_tag 'black-pieces.jpg' , class: 'img-fluid' %>
-                      <br />
-                      <br />
-                      <span class="column turn"><%= f.submit "Join as white player", class: "btn btn-secondary" %></span>
-                    <% end %>
-                  <% end %>
-          
                   <% else %>
                     <%= simple_form_for game, url: join_game_path(game) do |f| %>
                       <h6 class="text-center"><%= "Opponent: #{game.white_player_id}" %></h6></span>
-                      <%= f.input :black_player_id, as: :hidden, :input_html => { :value => current_user.id} %>
+                      <%= f.input :black_player_id, :input_html => { :value => current_user.id} %>
                       <%= image_tag 'black-pieces.jpg' , class: 'img-fluid' %>
                       <br />
                       <br />
@@ -44,8 +33,13 @@
                 </span>
               </div>      
           <% end %>
+        <% else %>
+          <h3 class="text-center">No Games to join! </h3>
         <% end %>
       </div>
     </div>    
   </div>
+    
+
+
 </div>
