@@ -30,15 +30,11 @@ class GamesController < ApplicationController
     if @game.white_player_id == current_user.id
       flash[:alert] = "You cannot play against yourself!"
       redirect_to root_path
-    else
-      @game.update_attributes(:black_player_id => current_user.id)
-      redirect_to game_path(@game)
     end
   end
 
   def join
     @game = Game.find(params[:id])
-    
     @game.update_attributes(:black_player_id => current_user.id)
       redirect_to game_path(@game)
   end

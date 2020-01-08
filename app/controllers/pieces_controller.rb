@@ -29,7 +29,7 @@ class PiecesController < ApplicationController
   def switch_turns
     if @game.white_player_id == @game.current_user_id
       @game.update_attributes(turn_user_id:@game.black_player_id)
-    elsif @game.black_player_id == @game.current_user_id
+    else @game.black_player_id == @game.current_user_id
       @game.update_attributes(turn_user_id:@game.white_player_id)
     end
   end
