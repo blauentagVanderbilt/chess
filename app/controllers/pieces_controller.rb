@@ -1,8 +1,9 @@
 class PiecesController < ApplicationController
    before_action :authenticate_user!, only: [:update]
 
+<<<<<<< HEAD
    def update
-    @piece = Piece.find(params[:id])
+    find_piece
       if @piece.valid_move?(params[:x].to_i, params[:y].to_i)
         render json: {success: true}
       elsif
@@ -12,7 +13,11 @@ class PiecesController < ApplicationController
       end
    end
 
-   private
+  private
+
+  def turn?
+    current_user.id == @game.turn_user_id
+  end
 
   def verify_two_players
     return if @game.black_player_id && @game.white_player_id
