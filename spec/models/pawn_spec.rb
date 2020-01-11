@@ -38,8 +38,8 @@ RSpec.describe Pawn, type: :model do
 
     it "should return true for black pawn to move one square forward" do
       game = Game.create
-      pawn = FactoryBot.create :pawn, x_position: 5, y_position: 5, game_id: game.id, color: "black"
-      expect(pawn.valid_move?(5, 4)).to eq(true)
+      pawn = FactoryBot.create :pawn, x_position: 1, y_position: 5, game_id: game.id, color: "black"
+      expect(pawn.valid_move?(1, 6)).to eq(true)
     end
 
     it "should return false for white pawn to move backward" do
