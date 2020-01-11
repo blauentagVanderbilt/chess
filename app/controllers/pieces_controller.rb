@@ -5,8 +5,10 @@ class PiecesController < ApplicationController
     @game = @piece.game
       if @piece.valid_move?(params[:x].to_i, params[:y].to_i)
         render json: {success: true}
-      else
+      elsif
         render json: {success: false}
+      else
+        @piece.update_attributes(piece_params.merge(move_number: @piece.move_number + 1))
       end
    end
 
@@ -43,4 +45,5 @@ class PiecesController < ApplicationController
     params.require(:piece).permit(:x_position, :y_position, :color, :id, :type)
   end
       
+
 end
