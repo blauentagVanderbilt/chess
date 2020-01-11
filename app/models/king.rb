@@ -12,4 +12,5 @@ class King < Piece
     self.picture = 'blackking.png' if color == 'black'
 
   end
+
 end
