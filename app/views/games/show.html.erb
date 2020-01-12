@@ -65,7 +65,7 @@
 <h5>These are the game details</h5>
 <p><%= @game.inspect %></p>
 <h5>These are the players</h5>
-  <p>White player: <%= @game.white_player&.email %></p>
+  <p>White player: <%= @game.white_player.email %></p>
   <p>Black player: <%= @game.black_player&.email %></p>
 
   <%= simple_form_for @game, url: forfeit_game_path(@game) do |f| %>

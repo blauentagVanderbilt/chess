@@ -4,7 +4,8 @@ class GamesController < ApplicationController
 
   def index
     @games = Game.all
-    @unmatched_games = Game.where(:black_player_id => nil).where.not(:white_player_id => nil).or (Game.where.not(:white_player_id => nil).where(:black_player_id => nil))
+    @unmatched_games = Game.where(:black_player_id => nil).where.not(:white_player_id => nil)
+    @started_games = Game.where.not(:white_player_id => nil).where.not(:black_player_id => nil).where(:winner_user_id => nil)
     @completed_games = Game.where(:state => "end")
   end
 
@@ -26,15 +27,16 @@ class GamesController < ApplicationController
   end
 
   def update
-
+    @game = Game.find(params[:id])
+    if @game.white_player_id == current_user.id
+      flash[:alert] = "You cannot play against yourself!"
+      redirect_to root_path
+    end
   end
 
   def join
     @game = Game.find(params[:id])
-    
-     
-    @game.update_attributes(game_params)
-    @game.white_player_id << current_user.id
+    @game.update_attributes(:black_player_id => current_user.id)
       redirect_to game_path(@game)
   end
 

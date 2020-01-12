@@ -9,15 +9,15 @@ class Pawn < Piece
     x_distance = x_distance(new_x_position)
     y_distance = y_distance(new_y_position)
 #---Opening Move-----#
-    if y_position == 2 && color == 'white'
-      x_distance == 0 && (new_y_position == 3 || new_y_position == 4)
-    elsif y_position == 7 && color == 'black'
-      x_distance == 0 && (new_y_position == 6 || new_y_position == 5)
+    if y_position == 6 && color == "white"
+      x_distance == 0 && (new_y_position == 5 || new_y_position == 4)
+    elsif y_position == 1 && color == "black"
+      x_distance == 0 && (new_y_position == 2 || new_y_position == 3)
 #---Otherwise---#
     else
-      if color == 'white'
+      if color == "black"
         (x_distance == 0) && (new_y_position == (y_position + 1))
-      elsif color == 'black'
+      elsif color == "white"
         (x_distance == 0) && (new_y_position == (y_position - 1))
       end
     end
