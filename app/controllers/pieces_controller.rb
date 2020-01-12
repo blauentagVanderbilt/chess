@@ -1,7 +1,7 @@
 class PiecesController < ApplicationController
    before_action :authenticate_user!, only: [:update]
 
-<<<<<<< HEAD
+
    def update
     find_piece
       if @piece.valid_move?(params[:x].to_i, params[:y].to_i)
