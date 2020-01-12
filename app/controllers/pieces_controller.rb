@@ -4,7 +4,7 @@ class PiecesController < ApplicationController
 
    def update
     find_piece
-      if @piece.valid_move?(params[:x].to_i, params[:y].to_i)
+      if @piece.move_to!(params[:x].to_i, params[:y].to_i)
         render json: {success: true}
       elsif
         render json: {success: false}
