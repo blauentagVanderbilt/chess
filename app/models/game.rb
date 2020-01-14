@@ -57,6 +57,22 @@ class Game < ApplicationRecord
     pieces.select { |p| p.color != color && p.captured != true }
   end
 
+  def checkmate_coords(x, y)
+    coords_around_cell(x, y).select! do |i|
+      i[0] <= x + 1 && i[1] >= y - 1 && exist?(i[0], i[1])
+    end
+  end
+
+  def coords_around_cell(x, y)
+    coords = [x, y, (x + 1), (x - 1), (y + 1), (y - 1)]
+    coords.uniq!.repeated_permutation(2).to_a
+    coords
+  end
+
+  def exist?(x, y)
+    (x <= 7 && x >= 0) && (y <= 7 && y >= 0)
+  end
+
   def white_player
     User.find_by_id(white_player_id)
   end

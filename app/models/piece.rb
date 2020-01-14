@@ -30,6 +30,15 @@ class Piece < ApplicationRecord
      game.pieces.find_by(x_position: x, y_position: y)
   end
 
+  def checkmate?(x, y)
+    if game.checkmate_coords(x, y).all? do |c|
+         check_state(c[0], c[1])
+       end
+      return true
+    end
+    false
+  end
+
   def check_state(x, y)
     old_x = x_position
     old_y = y_position
@@ -84,8 +93,3 @@ class Piece < ApplicationRecord
     return ((y_position - new_y_position) < 0)
   end
 end
-      
-
-
-
-
